@@ -18,6 +18,14 @@ public class Grupo extends AbstractEntity<Long> {
 	@NotEmpty(message = "O nome a pessoa deve ser informado!")
 	@Length(min = 2, max = 20, message = "a descrião deve ter entre {min} e {max} caracteres.")
 	private String descricao;
+	
+	public Grupo() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Grupo(String descricao ) {
+		this.descricao = descricao;
+	}
 
 	public String getDescricao() {
 		return descricao;
