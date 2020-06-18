@@ -10,11 +10,12 @@ import javax.persistence.TypedQuery;
 public abstract class AbstractDao<T, PK extends Serializable> {
 
 	@SuppressWarnings("unchecked")
-	private final Class<T> entityClass = 
+	protected
+	final Class<T> entityClass = 
 			(Class<T>) ( (ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	
 	@PersistenceContext
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 
 	protected EntityManager getEntityManager() {
 		return entityManager;
@@ -40,12 +41,42 @@ public abstract class AbstractDao<T, PK extends Serializable> {
 		return entityManager.find(entityClass, id);
 	}
 	
+public T findByText(String text) {
+		
+		return entityManager.find(entityClass, text);
+	}
+	
+	
+	
 	public List<T> findAll() {
 		
 		return entityManager
 				.createQuery("from " + entityClass.getSimpleName(), entityClass)
 				.getResultList();
-	}	
+		
+		
+	}
+	
+public List<T> findAllOrderIdAsc() {
+		
+		return entityManager
+				.createQuery("from " + entityClass.getSimpleName()+" order by id asc", entityClass)
+				.getResultList();
+		
+		
+	}
+
+	/*
+	 * public List<T> findIdFK(String column) {
+	 * 
+	 * return entityManager .createQuery("from " + entityClass.getSimpleName(),
+	 * entityClass) .getResultList();
+	 * 
+	 * 
+	 * }
+	 */
+
+
 	
 	protected List<T> createQuery(String jpql, Object... params) {
 		TypedQuery<T> query = entityManager.createQuery(jpql, entityClass);

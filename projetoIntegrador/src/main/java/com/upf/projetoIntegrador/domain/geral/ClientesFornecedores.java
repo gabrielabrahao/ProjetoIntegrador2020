@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.upf.projetoIntegrador.domain.Pessoa;
+import com.upf.projetoIntegrador.domain.comercial.Pedido;
 import com.upf.projetoIntegrador.domain.estoque.Produtos;
 
 @SuppressWarnings("serial")
@@ -26,16 +28,26 @@ public class ClientesFornecedores extends Pessoa<Long> {
 		this.cpfCnpj = cpfCnpj;
 	}
 	
+	@OneToMany(mappedBy = "fornecedor")
+	private List<Pedido> pedido;
 	
-	@ManyToMany(mappedBy = "prodFornecedores")
-	List<Produtos> prodFornecedores;
-
-	public List<Produtos> getProdFornecedores() {
-		return prodFornecedores;
+	
+	
+	public List<Pedido> getPedido() {
+		return pedido;
 	}
 
-	public void setProdFornecedores(List<Produtos> prodFornecedores) {
-		this.prodFornecedores = prodFornecedores;
+	public void setPedido(List<Pedido> pedido) {
+		this.pedido = pedido;
 	}
+
+	/*
+	 * @ManyToMany(mappedBy = "prodFornecedores") List<Produtos> prodFornecedores;
+	 * 
+	 * public List<Produtos> getProdFornecedores() { return prodFornecedores; }
+	 * 
+	 * public void setProdFornecedores(List<Produtos> prodFornecedores) {
+	 * this.prodFornecedores = prodFornecedores; }
+	 */
 	
 }

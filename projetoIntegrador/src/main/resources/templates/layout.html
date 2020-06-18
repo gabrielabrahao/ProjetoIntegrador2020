@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<title>Spring-Boot Básico</title>
+	<title>Projeto Integrador</title>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -17,6 +17,7 @@
 	
 	<!-- Custom styles for this template -->
 	<link href="/css/style.css" rel="stylesheet" />
+	
 </head>
 <body>
 	<header th:replace="fragments/header :: cabecalho">
@@ -47,7 +48,39 @@
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-	    
+	
+
+	var url = '';
+	
+	$('button[id*="btn_"]').click(function() {
+		url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+	});
+	
+	$('#ok_confirm').click(function() {
+		document.location.href = url;
+	});
+	
+	$('button[id*="btnInsert_"]').click(function() {
+		var forn = $('#fornecedores').val();
+		if(forn == null){
+			forn =0;
+		}
+		var prod = $('#id').val();
+		url = "http://localhost:8080/" + $(this).attr('id').split("_")[1] ;
+		document.location.href = url +forn+'/'+prod;
+	});
+	
+	
+	
+	
+	$('button[id*="btnRemoved_"]').click(function() {
+		
+		url = "http://localhost:8080/" + $(this).attr('id').split("_")[1]  ;
+		
+	});
+	
+    
+	
 		$(function() {
 			$('[data-toggle="popover"]').popover();
 		});

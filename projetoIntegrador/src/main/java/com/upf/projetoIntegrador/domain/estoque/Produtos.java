@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SecondaryTable;
@@ -40,27 +41,57 @@ public class Produtos extends AbstractEntity<Long> {
 	
 	boolean Ativo;
 	
-
-	
-	@ManyToMany
-	@JoinTable(name = "Produto_Forncedores",
-	joinColumns = @JoinColumn(name = "produto_id"),
-	inverseJoinColumns = @JoinColumn(name = "fornecedor_id" ))
-	private List<ClientesFornecedores> prodFornecedores;
-	
-
+	@OneToMany(mappedBy = "produtoid", cascade = CascadeType.ALL)
+	private List<ProdutosFornecedores> produtosFornecedores;
 	
 	@OneToMany(mappedBy = "produtoId", cascade = CascadeType.ALL)
 	private List<PedidoItens> possuiPedido; 
+
+	  @ManyToOne
+	  private Grupo grupo;
+	
+	
+	
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
+	public List<PedidoItens> getPossuiPedido() {
+		return possuiPedido;
+	}
+
+	public void setPossuiPedido(List<PedidoItens> possuiPedido) {
+		this.possuiPedido = possuiPedido;
+	}
+
+	/*
+	 * @ManyToMany
+	 * 
+	 * @JoinTable(name = "Produto_Fornecedores", joinColumns = @JoinColumn(name =
+	 * "produtoid"), inverseJoinColumns = @JoinColumn(name = "fornecedorid" ))
+	 * private List<ProdutosFornecedores> prodFornecedores;
+	 */
+	
+	
+	
+	
+	public List<ProdutosFornecedores> getProdutosFornecedores() {
+		return produtosFornecedores;
+	}
+
+	public void setProdutosFornecedores(List<ProdutosFornecedores> produtosFornecedores) {
+		this.produtosFornecedores = produtosFornecedores;
+	}
+
+	
 	
 
-	public List<ClientesFornecedores> getProdFornecedores() {
-		return prodFornecedores;
-	}
+	
 
-	public void setProdFornecedores(List<ClientesFornecedores> prodFornecedores) {
-		this.prodFornecedores = prodFornecedores;
-	}
 
 	public String getDescricao() {
 		return descricao;

@@ -20,11 +20,11 @@ public class Endereco extends AbstractEntity<Long> {
 	private String  cidade;
 	
 	
-	@Column(nullable = false, length = 2)
+	@Column(nullable = true, length = 2)
 	@Enumerated(EnumType.STRING)//Dessa informa , diz que tipo de dados salva no BD
 	private UF uf; 
 	
-	@Column(nullable = false, length = 9 )
+	@Column(nullable = true, length = 9 )
 	private String cep;
 	
 	@Column(nullable = false, length = 5)

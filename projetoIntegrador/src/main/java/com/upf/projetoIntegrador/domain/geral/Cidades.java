@@ -30,6 +30,9 @@ public class Cidades extends AbstractEntity<Long> {
 	@Column(nullable = false, length = 2)
 	private String  uf;
 
+public Cidades() {
+	// TODO Auto-generated constructor stub
+}
 	public String getNome() {
 		return nome;
 	}

@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.upf.projetoIntegrador.domain.geral.Endereco;
 
@@ -47,9 +49,10 @@ public abstract class Pessoa <ID extends Serializable> implements Serializable {
 	@Length(max = 20, message = "O telefone deve conter no máximo {max} caracteres.")
 	private String telefone;
 	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_Nascimento", columnDefinition = "DATE")
-	@NotNull(message = "É necessário informar uma data de nascimento.")
-	@Past(message = "Informe uma data no passado.")
+	//@NotNull(message = "É necessário informar uma data de nascimento.")
+	//@Past(message = "Informe uma data no passado.")
 	private LocalDate dataNascimento;
 	
 	

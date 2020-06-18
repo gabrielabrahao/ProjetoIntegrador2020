@@ -6,24 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.upf.projetoIntegrador.dao.GrupoDao;
-import com.upf.projetoIntegrador.domain.estoque.Grupo;
+import com.upf.projetoIntegrador.dao.ProdutosDao;
+import com.upf.projetoIntegrador.domain.estoque.Produtos;
 
 @Service
 @Transactional(readOnly = false) // Essa informação é implicita, informado apenas para conhecimento
-public class GrupoServiceImpl implements GrupoService {
+public class ProdutoServiceImpl implements ProdutoService {
 
 	@Autowired
-	private GrupoDao dao;
+	private ProdutosDao dao;
 
 	@Override
-	public void salvar(Grupo grupo) {
-		dao.save(grupo);
+	public void salvar(Produtos produto) {
+		dao.save(produto);
 	}
 
 	@Override
-	public void editar(Grupo grupo) {
-		dao.update(grupo);
+	public void editar(Produtos produto) {
+		dao.update(produto);
 
 	}
 
@@ -35,28 +35,15 @@ public class GrupoServiceImpl implements GrupoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Grupo buscarPorId(Long id) {
+	public Produtos buscarPorId(Long id) {
 		return dao.findByID(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Grupo> buscarTodos() {
+	public List<Produtos> buscarTodos() {
 		return dao.findAll();
 	}
 
-	@Override
-	public boolean grupoTemProdutos(Long id) {
-		
-		if (buscarPorId(id).getProdutos().isEmpty()) {
-			return false;
-		}
-		return true;
-		
-	}
-
-	@Override
-	public Grupo buscarPorDescricao(String text) {
-		return dao.findByText(text);
-	}
+	
 }

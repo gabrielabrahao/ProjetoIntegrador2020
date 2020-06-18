@@ -11,11 +11,11 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Lista de Cidades</span></li>
+						<span>Lista  de Produtos</span></li>
 				</ul>
-				<a class="btn btn-primary btn-md" href="/cidade/cadastro"
+				<a class="btn btn-primary btn-md" th:href="@{/produtos/cadastrar}"
 					role="button"> <span class="oi oi-plus" title="Cadastro"
-					aria-hidden="true"></span> <span>Nova Cidade</span>
+					aria-hidden="true"></span> <span>Novo produto</span>
 				</a>
 			</div>
 		</nav>
@@ -23,6 +23,7 @@
 		<div class="container" id="listagem">
 
 			<div th:replace="fragments/alert"></div>
+			<!-- Replace Responsavel pela mensagem de sucesso ou erro -->
 
 
 			<div class="table-responsive">
@@ -30,37 +31,42 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Nome</th>
-							<th>UF</th>
+							<th>Descrição</th>
+							<th>Unidade</th>
+							<th>Estoque Atual</th>
+							<th>Preço</th>
 							<th>Ação</th>
 						</tr>
 					</thead>
 					<tbody>
-
-
-						<tr th:each="c : ${cidades}">
-							<td th:text="${c.id}">id do objeto</td>
-							<td th:text="${c.nome}">nome do objeto</td>
-							<td th:text="${c.uf}">teste</td>
-							<td colspan="2"><a class="btn btn-info btn-sm"
-								th:href="@{/cidade/editar/{id} (id=${c.id}) }" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						<tr th:each="p : ${produtos}">
+							<td th:text="${p.id}">id do objeto</td>
+							<td th:text="${p.descricao}">Nome do objeto</td>
+							<td th:text="${p.unidadeEstoque}"></td>
+							<td th:text="${p.estoqueAtual}"></td>
+							<td th:text="${p.preco}"></td>
+							<td colspan="2"><a
+								th:href="@{/produtos/editar/{id} (id=${p.id}) }"
+								class="btn btn-info btn-sm" role="button"> <span
+									class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 							</a>
-								<button th:id="${ 'btn_cidade/excluir/' + c.id}" type="button"
+								<button th:id="${ 'btn_produtos/excluir/' + p.id}" type="button"
 									class="btn btn-danger btn-sm" data-toggle="modal"
 									data-target="#myModal">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
+									<span class="oi oi-circle-x" title="Exclusão"
 										aria-hidden="true"></span>
 								</button></td>
+							</td>
 						</tr>
-
-
 					</tbody>
 				</table>
 			</div>
+			
 		</div>
-
+		
+		
 		<div th:replace="fragments/modal :: modal"></div>
+		
 	</section>
 </body>
 </html>

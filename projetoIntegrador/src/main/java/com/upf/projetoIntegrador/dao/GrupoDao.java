@@ -16,5 +16,7 @@ public interface GrupoDao {
 	  Grupo findByID(Long id);
 	  
 	  List<Grupo> findAll();
+
+	Grupo findByText(String text);
 	 
 }

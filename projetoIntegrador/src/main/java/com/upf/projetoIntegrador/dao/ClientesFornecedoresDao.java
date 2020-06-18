@@ -2,6 +2,7 @@ package com.upf.projetoIntegrador.dao;
 
 import java.util.List;
 
+import com.upf.projetoIntegrador.domain.estoque.ProdutosFornecedores;
 import com.upf.projetoIntegrador.domain.geral.ClientesFornecedores;
 
 public interface ClientesFornecedoresDao {
@@ -15,4 +16,10 @@ public interface ClientesFornecedoresDao {
 	  ClientesFornecedores findByID(Long id);
 	  
 	  List<ClientesFornecedores> findAll();
+	  
+	  List<ClientesFornecedores> findAllOrderIdAsc();
+	  
+	  List<ProdutosFornecedores> findIdFK(Long id);
+	  
+	  
 }

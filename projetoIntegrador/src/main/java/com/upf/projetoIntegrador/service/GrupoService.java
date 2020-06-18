@@ -15,7 +15,11 @@ public interface GrupoService {
 	void excluir(long id);
 
 	Grupo buscarPorId(Long id);
+	
+	Grupo buscarPorDescricao(String text);
 
 	List<Grupo> buscarTodos();
+
+	boolean grupoTemProdutos(Long id);
 
 }

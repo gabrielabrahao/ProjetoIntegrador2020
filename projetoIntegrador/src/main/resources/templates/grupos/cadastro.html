@@ -10,24 +10,28 @@
 	                <ul class="navbar-nav mr-auto">
 	                    <li class="nav-item active">
 	                        <i class="oi oi-caret-right"></i>
-	                        <span>Cadastrar Departamentos</span>
+	                        <span>Cadastrar Grupo</span>
 	                    </li>
 	                </ul>
-	                <a class="btn btn-primary btn-md" href="/departamentos/listar" role="button">
+	                <a class="btn btn-primary btn-md" th:href="@{/grupos/listar}" role="button">
 	                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
-	                    <span>Listar Departamentos</span>
+	                    <span>Listar Grupos</span>
 	                </a>
 	            </div>
 	        </nav>
 	
 	        <div class="container" id="cadastro">
-	            <form th:action="${departamento.id == nulll} ?  @{/departamentos/salvar} :  @{/departamentos/editar}"
-	             th:object="${departamento}" method="POST">
+	        	        	
+
+               <div th:replace="fragments/alert"></div><!-- Replace Responsavel pela mensagem de sucesso ou erro -->
+	        
+	            <form th:action="${grupo.id == nulll} ?  @{/grupos/salvar} :  @{/grupos/editar}"
+	             th:object="${grupo}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
-	                        <label for="nome">Departamento</label>
-	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Nome Departamento" autofocus="autofocus" th:field="*{nome}"/>
+	                        <label for="nome">Grupos</label>
+	                        <input type="text" class="form-control" id="descricao" maxlength="20"
+	                               placeholder="Nome do Grupo" autofocus="autofocus" th:field="*{descricao}"/>
 	                    </div>
 	                </div>
 	                <input type="hidden" id="id" th:field="*{id}"/>
